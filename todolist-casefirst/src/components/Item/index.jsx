@@ -7,6 +7,7 @@ export default class Item extends Component {
 
 	//鼠标移入、移出的回调
 	handleMouse = (flag) => {
+		// 保证了onMouseEnter 和 onMouseLeave 返回的是一个返回值；写成高阶函数
 		return () => {
 			this.setState({ mouse: flag })
 		}
