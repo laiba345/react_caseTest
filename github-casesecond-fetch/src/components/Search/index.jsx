@@ -52,7 +52,7 @@ export default class Search extends Component {
     // 优化
     const response = await fetch(`https://api.github.com/search/users?q=${keyWord}`)
     const data = await response.json()
-    console.log(data)
+    // console.log(data)
   };
 
   render() {
