@@ -49,10 +49,16 @@ export default class Search extends Component {
     //   (error) => console.log('获取数据失败', error)
     // )
 
-    // 优化
-    const response = await fetch(`https://api.github.com/search/users?q=${keyWord}`)
-    const data = await response.json()
-    // console.log(data)
+    // 优化; 所谓关注分离，分步骤来进行，不会一次性把数据都给你；
+    // fetch使用率很低，因为兼容性不好
+    try {
+      const response = await fetch(`https://api.github.com/search/users?q=${keyWord}`)
+      const data = await response.json()
+      // console.log(data)
+      PubSub.publish('atguigu', { isLoading: false, users: data.items })
+    } catch (error) {
+      console.log('请求出错', error)
+    }
   };
 
   render() {
